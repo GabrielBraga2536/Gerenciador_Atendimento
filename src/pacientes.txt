@@ -1,0 +1,5 @@
+Paciente: Wagner
+Idade: 43
+RG: 12.345.678+
+Entrada: 29/4/2025
+
