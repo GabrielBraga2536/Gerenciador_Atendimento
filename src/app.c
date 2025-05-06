@@ -48,7 +48,7 @@ int main() {
             case 4:
               scanf("%s", RG);
               Paciente *pacienteParaAtualizar = BuscarPaciente(lista, RG);
-              AtualizarPaciente(pacienteParaAtualizar, lista, arquivo);
+              AtualizarPaciente(pacienteParaAtualizar, lista);
               break;
             case 5:
               scanf("%s", RG);

@@ -17,7 +17,7 @@ void ConsultarPaciente(LDE *lista, Paciente *paciente);
 
 void ExibirListaCompleta(LDE *lista);
 
-void AtualizarPaciente(Paciente *paciente, LDE *lista, FILE *arquivo);
+void AtualizarPaciente(Paciente *paciente, LDE *lista);
 
 void RemoverPaciente(Paciente *paciente, LDE *lista, Fila *fila, Heap *heap, FILE *arquivo);
 
