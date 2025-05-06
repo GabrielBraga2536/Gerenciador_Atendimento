@@ -25,4 +25,6 @@ void ExibirLDE(LDE *lista);
 
 void ClearLDE(LDE *lista);
 
+Paciente *BuscarPaciente(LDE *lista, char RG[]);
+
 #endif /* LDE_H */

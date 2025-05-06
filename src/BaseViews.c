@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h> 
 #include <string.h>
 
 #include "BaseViews.h"
@@ -54,4 +55,18 @@ int MenuInputUsuario(){
   printf("Digite uma opcao: ");
   scanf("%d", &opcao);
   return opcao;
+}
+
+void ExibirMenuPrincipal(){
+  system("cls");
+  
+  MenuTitulo("Menu Principal");
+  MenuItem("1. Cadastrar");
+  MenuItem("2. Atendimento");
+  MenuItem("3. Atendimento Prioritario");
+  MenuItem("4. Pesquisar");
+  MenuItem("5. Desfazer");
+  MenuItem("6. Sobre");
+  MenuItem("0. Sair");
+  MenuLinhaInferior();
 }

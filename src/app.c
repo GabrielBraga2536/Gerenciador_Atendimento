@@ -1,32 +1,77 @@
-//* Lógica da aplicação e implementação dos menus
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
+#include <windows.h>
 
-#include "MenuViews.h"
 #include "BaseViews.h"
 #include "Paciente.h"
 #include "LDE.h"
+#include "Fila.h"
+#include "Heap.h"
+#include "Debug.h"
+
+#include "MenuCadastrar.h"
 
 
-int main(){  
-  setlocale(LC_ALL, "Portuguese");
+int main() {
+  int opcao;
+  char RG[10];
   
   FILE *arquivo = fopen("pacientes.txt", "a+");
-  if(arquivo == NULL){
-    printf("Erro ao abrir o arquivo.\n");
-    return 1;
-  }
+  IsFileOpen(arquivo, "pacientes.txt");
   
   LDE *lista = CriarLDE();
-  Paciente *paciente1 = CriarPaciente("Marcos", "12.345.678-9", 30);
-  Paciente *paciente2 = CriarPaciente("Wagner", "12.345.678-9", 43);
+  Fila *fila = CriarFila();
+  Heap *heap = CriarHeap();
   
-  InserirLDE(lista, paciente1, arquivo);
-  InserirLDE(lista, paciente2, arquivo);
-  ExibirLDE(lista);
-  RemoverLDE(lista, paciente1, arquivo);
-  ExibirLDE(lista);
+  while(1){
+    system("cls");
+    ExibirMenuPrincipal();
+    
+    opcao = MenuInputUsuario();
+    
+    switch(opcao){
+      case 1: //* Menu de Cadastro
+        while(opcao != 0){ 
+          ExibirMenuCadastrar();
+          opcao = MenuInputUsuario();
+          
+          switch (opcao){
+            case 1:
+              CadastrarNovoPaciente(lista, arquivo, fila, heap);
+              break;
+            case 2:
+              ConsultarPaciente(lista, fila->head->paciente);
+              break;
+            case 3:
+              ExibirListaCompleta(lista);
+              break;
+            case 4:
+              scanf("%s", RG);
+              Paciente *pacienteParaAtualizar = BuscarPaciente(lista, RG);
+              AtualizarPaciente(pacienteParaAtualizar, lista, arquivo);
+              break;
+            case 5:
+              scanf("%s", RG);
+              Paciente *pacienteParaRemover = BuscarPaciente(lista, RG);
+              RemoverPaciente(pacienteParaRemover, lista, fila, heap, arquivo);
+              break;
+            case 0:
+              break;
+            default:
+          }
+          
+        }
+        break;
+      case 0:
+        fclose(arquivo);
+        ClearLDE(lista);
+        ClearFila(fila);
+        ClearHeap(heap);
+        return 0;
+      default:
+        printf("Opcao invalida. Tente novamente.\n");
+    }
+  }
   
   return 0;
 }

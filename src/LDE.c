@@ -33,7 +33,7 @@ void InserirLDE(LDE *lista, Paciente *paciente, FILE *arquivo){
   lista->qtde++;
   
   // Salvar informações do paciente no arquivo
-  fprintf(arquivo, "Paciente: %s\nIdade: %d\nRG: %s\nEntrada: %d/%d/%d\n\n", 
+  fprintf(arquivo, "Nome: %s\nIdade: %d\nRG: %s\nEntrada: %d/%d/%d\n\n", 
     paciente->nome, paciente->idade, paciente->RG, paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano
   );
   fclose(arquivo);
@@ -101,4 +101,23 @@ void ClearLDE(LDE *lista){
   }
   
   free(lista);
+}
+
+Paciente *BuscarPaciente(LDE *lista, char RG[]){
+  IsMemoryAllocated(lista);
+  
+  Celula *atual = lista->primeiro;
+  while(atual != NULL){
+    if(strcmp(atual->paciente->RG, RG) == 0){
+      return atual->paciente;
+    }
+    atual = atual->prox;
+  }
+  
+  Paciente *pacienteVazio;
+  strcpy(pacienteVazio->nome, " ");
+  strcpy(pacienteVazio->RG, " ");
+  pacienteVazio->idade = 0;
+  
+  return pacienteVazio;
 }

@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "Debug.h"
+#include "BaseViews.h"
 
 typedef struct Data{
   int dia;

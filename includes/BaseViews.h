@@ -12,4 +12,6 @@ void MenuTitulo(char *titulo);
 
 int MenuInputUsuario();
 
+void ExibirMenuPrincipal();
+
 #endif /* BaseViews_h */

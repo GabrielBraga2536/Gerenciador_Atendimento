@@ -2,7 +2,7 @@
 TARGET = a
 
 # Arquivos-fonte
-SRCS = app.c baseViews.c MenuViews.c Debug.c Paciente.c LDE.c
+SRCS = app.c baseViews.c MenuViews.c Debug.c Paciente.c LDE.c Fila.c Heap.c MenuCadastrar.c
 
 # Compilador e flags
 CC = gcc

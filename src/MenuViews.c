@@ -4,31 +4,6 @@
 #include "MenuViews.h"
 #include "BaseViews.h"
 
-void ExibirMenuPrincipal(){
-  system("cls");
-  
-  MenuTitulo("Menu Principal");
-  MenuItem("1. Cadastrar");
-  MenuItem("2. Atendimento");
-  MenuItem("3. Atendimento Prioritario");
-  MenuItem("4. Pesquisar");
-  MenuItem("5. Desfazer");
-  MenuItem("6. Sobre");
-  MenuItem("0. Sair");
-  MenuLinhaInferior();
-}
-
-void ExibirMenuCadastrar(){
-  system("cls");
-  
-  MenuTitulo("Cadastrar");
-  MenuItem("1. Cadastrar Novo Paciente");
-  MenuItem("2. Consultar Paciente");
-  MenuItem("3. Mostrar Lista De Pacientes");
-  MenuItem("4. Atualizar Paciente");
-  MenuItem("5. Remover Paciente");
-  MenuLinhaInferior();
-}
 
 void ExibirMenuAtendimento(){
   system("cls");

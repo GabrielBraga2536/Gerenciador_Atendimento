@@ -3,9 +3,6 @@
 
 #include "BaseViews.h"
 
-void ExibirMenuPrincipal();
-
-void ExibirMenuCadastrar();
 
 void ExibirMenuAtendimento();
 

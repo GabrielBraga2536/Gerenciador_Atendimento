@@ -19,18 +19,37 @@ Paciente *CriarPaciente(char nome[], char RG[], int idade) {
   time_t t = time(NULL);
   struct tm tm = *localtime(&t);
   paciente->Entrada->dia = tm.tm_mday;
-  paciente->Entrada->mes = tm.tm_mon + 1; 
-  paciente->Entrada->ano = tm.tm_year + 1900; 
+  paciente->Entrada->mes = tm.tm_mon + 1;
+  paciente->Entrada->ano = tm.tm_year + 1900;
   
   return paciente;
 }
 
 void ExibirPaciente(Paciente *paciente) {
+  char *nome = "Nome: ";
+  char *RG = "RG: ";
+  char *idade = "Idade: ";
+  char *data = "Data de Entrada: ";
+  
+  strcat(nome, paciente->nome);
+  strcat(RG, paciente->RG);
+  
+  char idadeStr[10];
+  sprintf(idadeStr, "%d", paciente->idade);
+  strcat(idade, idadeStr);
+  
+  char dataStr[15];
+  sprintf(dataStr, "%02d/%02d/%04d", paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano);
+  strcat(data, dataStr);
+  
   if (paciente != NULL) {
-    printf("Nome: %s\n", paciente->nome);
-    printf("RG: %s\n", paciente->RG);
-    printf("Idade: %d\n", paciente->idade);
-    printf("Data de Entrada: %02d/%02d/%04d\n\n", paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano);
+    MenuItem(nome);
+    MenuItem(RG);
+    MenuItem(idade);
+    MenuItem(data);
+    MenuItem(" ");
+    MenuLinhaInferior();
+    printf("\n\n");
   } 
 }
 
