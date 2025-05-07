@@ -10,6 +10,10 @@
 
 void ExibirMenuAtendimento();
 
+void EnfileirarPaciente(Fila *fila, Paciente *paciente);
 
+void DesenfileirarPaciente(Fila *fila);
+
+void ExibirFilaAtendimento(Fila *fila);
 
 #endif /* MENUATENDIMENTO_H */

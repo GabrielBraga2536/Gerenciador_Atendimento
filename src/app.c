@@ -7,14 +7,17 @@
 #include "LDE.h"
 #include "Fila.h"
 #include "Heap.h"
+#include "Pilha.h"
+
 #include "Debug.h"
 
 #include "MenuCadastrar.h"
+#include "MenuAtendimento.h"
+#include "MenuSobre.h"
 
 
 int main() {
   int opcao;
-  char RG[10];
   
   FILE *arquivo = fopen("pacientes.txt", "a+");
   IsFileOpen(arquivo, "pacientes.txt");
@@ -22,6 +25,7 @@ int main() {
   LDE *lista = CriarLDE();
   Fila *fila = CriarFila();
   Heap *heap = CriarHeap();
+  Pilha *pilha = CriarPilha();
   
   while(1){
     system("cls");
@@ -37,23 +41,22 @@ int main() {
           
           switch (opcao){
             case 1:
-              CadastrarNovoPaciente(lista, arquivo, fila, heap);
+              CadastrarNovoPaciente(lista, arquivo);
               break;
             case 2:
-              ConsultarPaciente(lista, fila->head->paciente);
+              Paciente *pacienteParaConsultar = BuscarPaciente(lista);
+              ConsultarPaciente(lista, pacienteParaConsultar);
               break;
             case 3:
               ExibirListaCompleta(lista);
               break;
             case 4:
-              scanf("%s", RG);
-              Paciente *pacienteParaAtualizar = BuscarPaciente(lista, RG);
-              AtualizarPaciente(pacienteParaAtualizar, lista);
+              Paciente *pacienteParaAtualizar = BuscarPaciente(lista);
+              AtualizarPaciente(lista, pacienteParaAtualizar);
               break;
             case 5:
-              scanf("%s", RG);
-              Paciente *pacienteParaRemover = BuscarPaciente(lista, RG);
-              RemoverPaciente(pacienteParaRemover, lista, fila, heap, arquivo);
+              Paciente *pacienteParaRemover = BuscarPaciente(lista);
+              RemoverPaciente(pacienteParaRemover, lista, arquivo);
               break;
             case 0:
               break;
@@ -61,6 +64,33 @@ int main() {
           }
           
         }
+        break;
+      
+      case 2: //* Menu de Atendimento
+        while(opcao != 0){
+          ExibirMenuAtendimento();
+          opcao = MenuInputUsuario();
+          
+          switch (opcao){
+            case 1:
+              Paciente *pacienteParaEnfileirar = BuscarPaciente(lista);
+              EnfileirarPaciente(fila, pacienteParaEnfileirar);
+              break;
+            case 2:
+              DesenfileirarPaciente(fila);
+              break;
+            case 3:
+              ExibirFilaAtendimento(fila);
+              break;
+            case 0:
+              break;
+            default:
+          }
+        }
+        break;
+      case 6:
+        ExibirMenuSobre();
+        system("pause");
         break;
       case 0:
         fclose(arquivo);

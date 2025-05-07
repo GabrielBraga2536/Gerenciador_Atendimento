@@ -35,9 +35,8 @@ void Enfileirar(Fila *fila, Paciente *paciente){
   fila->qtde++;
 }
 
-void Desenfileirar(Fila *fila, Paciente *paciente){
+void Desenfileirar(Fila *fila){
   IsMemoryAllocated(fila);
-  IsMemoryAllocated(paciente);
   
   if(fila->head == NULL){
     printf("Fila vazia.\n");

@@ -21,7 +21,7 @@ CelulaFila *CriarCelulaFila(Paciente *paciente);
 
 void Enfileirar(Fila *fila, Paciente *paciente);
 
-void Desenfileirar(Fila *fila, Paciente *paciente);
+void Desenfileirar(Fila *fila);
 
 void ExibirFila(Fila *fila);
 

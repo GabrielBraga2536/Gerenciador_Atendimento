@@ -10,6 +10,8 @@ void MenuItem(char *item);
 
 void MenuTitulo(char *titulo);
 
+void MenuTituloIsolado(char *titulo);
+
 int MenuInputUsuario();
 
 void ExibirMenuPrincipal();

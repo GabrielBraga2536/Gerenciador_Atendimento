@@ -103,8 +103,15 @@ void ClearLDE(LDE *lista){
   free(lista);
 }
 
-Paciente *BuscarPaciente(LDE *lista, char RG[]){
+Paciente *BuscarPaciente(LDE *lista){
   IsMemoryAllocated(lista);
+  char RG[10];
+
+  system("cls");
+  
+  MenuTituloIsolado("Buscar Paciente");
+  printf("Digite o RG do paciente: ");
+  scanf("%s", RG);
   
   Celula *atual = lista->primeiro;
   while(atual != NULL){

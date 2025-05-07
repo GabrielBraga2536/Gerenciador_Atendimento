@@ -1,15 +1,5 @@
 Nome: Gabriel
 Idade: 21
 RG: 123456789
-Entrada: 6/5/2025
-
-Nome: Manuella
-Idade: 21
-RG: 213456789
-Entrada: 6/5/2025
-
-Nome: Bia
-Idade: 54
-RG: 324253627
-Entrada: 6/5/2025
+Entrada: 7/5/2025
 

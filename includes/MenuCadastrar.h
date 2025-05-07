@@ -11,15 +11,15 @@
 
 void ExibirMenuCadastrar();
 
-void CadastrarNovoPaciente(LDE *lista, FILE *arquivo, Fila *fila, Heap *heap);
+void CadastrarNovoPaciente(LDE *lista, FILE *arquivo);
 
 void ConsultarPaciente(LDE *lista, Paciente *paciente);
 
 void ExibirListaCompleta(LDE *lista);
 
-void AtualizarPaciente(Paciente *paciente, LDE *lista);
+void AtualizarPaciente(LDE *lista, Paciente *paciente);
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, Fila *fila, Heap *heap, FILE *arquivo);
+void RemoverPaciente(Paciente *paciente, LDE *lista, FILE *arquivo);
 
 
 

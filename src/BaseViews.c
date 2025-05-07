@@ -49,6 +49,32 @@ void MenuTitulo(char *titulo){
   printf("%c\n", 185);
 }
 
+void MenuTituloIsolado(char *titulo){
+  printf("%c", 201);
+  
+  for(int i = 0; i < MAX_LENGTH; i++){
+    printf("%c", 205);
+  }
+  
+  printf("%c\n", 187);
+  
+  printf("%c", 186);
+  
+  int padding = (MAX_LENGTH - strlen(titulo)) / 2;
+  printf("%*s", padding, "");
+  printf("%-*s", MAX_LENGTH - padding, titulo);
+  
+  printf("%c\n", 186);
+  
+  printf("%c", 200);
+  
+  for(int i = 0; i < MAX_LENGTH; i++){
+    printf("%c", 205);
+  }
+  
+  printf("%c\n\n", 188);
+}
+
 int MenuInputUsuario(){
   int opcao;
   printf("\n");
