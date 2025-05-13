@@ -1,12 +1,13 @@
 #include "Pilha.h"
 
-CelulaPilha *CriarCelulaPilha(Paciente *paciente) {
+CelulaPilha *CriarCelulaPilha(Paciente *paciente, int flag) {
   CelulaPilha *nova = (CelulaPilha *)malloc(sizeof(CelulaPilha));
   IsMemoryAllocated(nova);
+  IsMemoryAllocated(paciente);
   
   nova->paciente = paciente;
   nova->prox = NULL;
-  nova->flag = 0; // Inicialmente, a célula não foi removida
+  nova->flag = flag;
   
   return nova;
 }
@@ -21,11 +22,13 @@ Pilha *CriarPilha() {
   return pilha;
 }
 
-void Push(Pilha *pilha, Paciente *paciente) {
+void Push(Pilha *pilha, Paciente *paciente, int flag) {
   IsMemoryAllocated(pilha);
   IsMemoryAllocated(paciente);
   
-  CelulaPilha *nova = CriarCelulaPilha(paciente);
+  CelulaPilha *nova = CriarCelulaPilha(paciente, flag);
+  IsMemoryAllocated(nova);
+  
   nova->prox = pilha->topo;
   pilha->topo = nova;
   pilha->qtde++;

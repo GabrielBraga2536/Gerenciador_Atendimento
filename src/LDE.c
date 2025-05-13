@@ -10,10 +10,9 @@ LDE *CriarLDE(){
   return lista;
 }
 
-void InserirLDE(LDE *lista, Paciente *paciente, FILE *arquivo){
+void InserirLDE(LDE *lista, Paciente *paciente){
   IsMemoryAllocated(lista);
   IsMemoryAllocated(paciente);
-  IsFileOpen(arquivo, "pacientes.txt");
   
   // Criar nova célula
   Celula *nova = (Celula*)malloc(sizeof(Celula));
@@ -31,18 +30,11 @@ void InserirLDE(LDE *lista, Paciente *paciente, FILE *arquivo){
   }
   
   lista->qtde++;
-  
-  // Salvar informações do paciente no arquivo
-  fprintf(arquivo, "Nome: %s\nIdade: %d\nRG: %s\nEntrada: %d/%d/%d\n\n", 
-    paciente->nome, paciente->idade, paciente->RG, paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano
-  );
-  fclose(arquivo);
 }
 
-void RemoverLDE(LDE *lista, Paciente *paciente, FILE *arquivo){
+void RemoverLDE(LDE *lista, Paciente *paciente){
   IsMemoryAllocated(lista);
   IsMemoryAllocated(paciente);
-  IsFileOpen(arquivo, "pacientes.txt");
   
   Celula *atual = lista->primeiro;
   while(atual != NULL && atual->paciente != paciente){
@@ -63,20 +55,6 @@ void RemoverLDE(LDE *lista, Paciente *paciente, FILE *arquivo){
     free(atual);
     lista->qtde--;
   }
-  
-  // Reescrever o arquivo sem o paciente removido
-  rewind(arquivo);
-  Celula *temp = lista->primeiro;
-  freopen("pacientes.txt", "w", arquivo); // Limpar o arquivo
-  while(temp != NULL){
-    fprintf(arquivo, "Paciente: %s\nIdade: %d\nRG: %s\nEntrada: %d/%d/%d\n\n", 
-      temp->paciente->nome, temp->paciente->idade, temp->paciente->RG, 
-      temp->paciente->Entrada->dia, temp->paciente->Entrada->mes, temp->paciente->Entrada->ano
-    );
-    temp = temp->prox;
-  }
-  free(temp);
-  fclose(arquivo);
 }
 
 void ExibirLDE(LDE *lista){
@@ -106,7 +84,7 @@ void ClearLDE(LDE *lista){
 Paciente *BuscarPaciente(LDE *lista){
   IsMemoryAllocated(lista);
   char RG[10];
-
+  
   system("cls");
   
   MenuTituloIsolado("Buscar Paciente");
@@ -121,10 +99,7 @@ Paciente *BuscarPaciente(LDE *lista){
     atual = atual->prox;
   }
   
-  Paciente *pacienteVazio;
-  strcpy(pacienteVazio->nome, " ");
-  strcpy(pacienteVazio->RG, " ");
-  pacienteVazio->idade = 0;
+  Paciente *pacienteVazio = CriarPaciente("", "", 0);
   
   return pacienteVazio;
 }

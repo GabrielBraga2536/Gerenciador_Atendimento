@@ -27,4 +27,6 @@ void ExibirPaciente(Paciente *paciente);
 
 void ClearPaciente(Paciente *paciente);
 
+int ValidarPaciente(Paciente *paciente);
+
 #endif /* PACIENTE_H */

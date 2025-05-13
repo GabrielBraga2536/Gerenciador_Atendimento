@@ -16,7 +16,7 @@ void ExibirMenuCadastrar() {
   MenuLinhaInferior();
 }
 
-void CadastrarNovoPaciente(LDE *lista, FILE *arquivo) {
+void CadastrarNovoPaciente(LDE *lista, ABB *arvore) {
   char nome[50], RG[10];
   int idade;
   
@@ -36,7 +36,8 @@ void CadastrarNovoPaciente(LDE *lista, FILE *arquivo) {
   Paciente *novoPaciente = CriarPaciente(nome, RG, idade);
   
   if (novoPaciente != NULL) {
-    InserirLDE(lista, novoPaciente, arquivo);
+    InserirLDE(lista, novoPaciente);
+    InserirABB(arvore, novoPaciente);
     
     printf("\nPaciente cadastrado com sucesso!\n\n");
     system("pause");
@@ -51,9 +52,8 @@ void ConsultarPaciente(LDE *lista, Paciente *paciente) {
   
   MenuTituloIsolado("Consultar Paciente");
   
-  if (paciente == NULL) {
-    MenuItem("Paciente nao encontrado.");
-    MenuLinhaInferior();
+  if (paciente->idade == 0) {
+    printf("\nPaciente nao encontrado\n\n.");
   } else {
     ExibirPaciente(paciente);
   }
@@ -80,7 +80,7 @@ void AtualizarPaciente(LDE *lista, Paciente *paciente) {
   
   MenuTituloIsolado("Atualizar Paciente");
   
-  if (paciente == NULL) {
+  if (paciente->idade == 0) {
     printf("Paciente nao encontrado.\n\n");
     system("pause");
     return;
@@ -122,18 +122,19 @@ void AtualizarPaciente(LDE *lista, Paciente *paciente) {
   
 }
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, FILE *arquivo) {
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore) {
   system("cls");
   
   MenuTituloIsolado("Remover Paciente");
   
-  if (paciente == NULL) {
+  if (paciente->idade == 0) {
     printf("Paciente nao encontrado.\n\n");
     system("pause");
     return;
   }
   
-  RemoverLDE(lista, paciente, arquivo);
+  RemoverLDE(lista, paciente);
+  RemoverABB(arvore, paciente);
   
   
   printf("\nPaciente removido com sucesso!\n\n");

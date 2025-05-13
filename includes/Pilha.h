@@ -15,11 +15,11 @@ typedef struct {
   int qtde;
 } Pilha;
 
-CelulaPilha *CriarCelulaPilha(Paciente *paciente);
+CelulaPilha *CriarCelulaPilha(Paciente *paciente, int flag);
 
 Pilha *CriarPilha();
 
-void Push(Pilha *pilha, Paciente *paciente);
+void Push(Pilha *pilha, Paciente *paciente, int flag);
 
 void Pop(Pilha *pilha);
 

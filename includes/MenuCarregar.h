@@ -5,11 +5,12 @@
 #include "BaseViews.h"
 #include "Debug.h"
 #include "LDE.h"
-#include "Fila.h"
-#include "Heap.h"
+#include "ABB.h"
 
 void ExibirMenuCarregar();
 
+void CarregarArquivo(LDE *lista, ABB *arvore);
 
+void SalvarArquivo(LDE *lista, ABB *arvore);
 
 #endif /* MENUCARREGAR_H */

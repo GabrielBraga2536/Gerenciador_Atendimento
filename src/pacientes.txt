@@ -1,5 +1,49 @@
 Nome: Gabriel
 Idade: 21
 RG: 123456789
-Entrada: 7/5/2025
+Entrada: 8/5/2025
 
+Nome: Manuella
+Idade: 21
+RG: 987654321
+Entrada: 24/2/2025
+
+Nome: Joao
+Idade: 45
+RG: 321654987
+Entrada: 8/8/2023
+
+Nome: Julia
+Idade: 17
+RG: 415263748
+Entrada: 8/1/2024
+
+Nome: Matheus
+Idade: 24
+RG: 132435469
+Entrada: 16/10/2022
+
+Nome: Marcia
+Idade: 67
+RG: 436578125
+Entrada: 2/7/2021
+
+Nome: Davi
+Idade: 59
+RG: 325641286
+Entrada: 28/1/2019
+
+Nome: Cleide
+Idade: 42
+RG: 124352976
+Entrada: 12/12/2023
+
+Nome: Rafael
+Idade: 38
+RG: 869462481
+Entrada: 29/11/2017
+
+Nome: Luana
+Idade: 27
+RG: 316498501
+Entrada: 14/4/2018

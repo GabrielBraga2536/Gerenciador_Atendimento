@@ -8,11 +8,16 @@
 #include "Fila.h"
 #include "Heap.h"
 #include "Pilha.h"
+#include "ABB.h"
 
 #include "Debug.h"
 
 #include "MenuCadastrar.h"
 #include "MenuAtendimento.h"
+#include "MenuAtendimentoPrioritario.h"
+#include "MenuPesquisar.h"
+#include "MenuDesfazer.h"
+#include "MenuCarregar.h"
 #include "MenuSobre.h"
 
 
@@ -26,6 +31,7 @@ int main() {
   Fila *fila = CriarFila();
   Heap *heap = CriarHeap();
   Pilha *pilha = CriarPilha();
+  ABB *arvore = CriarABB();
   
   while(1){
     system("cls");
@@ -41,7 +47,7 @@ int main() {
           
           switch (opcao){
             case 1:
-              CadastrarNovoPaciente(lista, arquivo);
+              CadastrarNovoPaciente(lista, arvore);
               break;
             case 2:
               Paciente *pacienteParaConsultar = BuscarPaciente(lista);
@@ -56,7 +62,7 @@ int main() {
               break;
             case 5:
               Paciente *pacienteParaRemover = BuscarPaciente(lista);
-              RemoverPaciente(pacienteParaRemover, lista, arquivo);
+              RemoverPaciente(pacienteParaRemover, lista, arvore);
               break;
             case 0:
               break;
@@ -74,10 +80,10 @@ int main() {
           switch (opcao){
             case 1:
               Paciente *pacienteParaEnfileirar = BuscarPaciente(lista);
-              EnfileirarPaciente(fila, pacienteParaEnfileirar);
+              EnfileirarPaciente(fila, pacienteParaEnfileirar, pilha);
               break;
             case 2:
-              DesenfileirarPaciente(fila);
+              DesenfileirarPaciente(fila, pilha);
               break;
             case 3:
               ExibirFilaAtendimento(fila);
@@ -88,7 +94,88 @@ int main() {
           }
         }
         break;
-      case 6:
+      
+      case 3: //* Menu de Atendimento Prioritario
+        while(opcao != 0){
+          ExibirMenuAtendimentoPrioritario();
+          opcao = MenuInputUsuario();
+          
+          switch (opcao){
+            case 1:
+              Paciente *pacienteParaEnfileirarPrioritario = BuscarPaciente(lista);
+              EnfileirarPacientePrioritario(heap, pacienteParaEnfileirarPrioritario);
+              break;
+            case 2:
+              DesenfileirarPacientePrioritario(heap);
+              break;
+            case 3:
+              ExibirFilaPrioritaria(heap);
+              break;
+            case 0:
+              break;
+            default:
+          }
+        }
+        break;
+      
+      case 4: //* Menu de Pesquisa
+        while(opcao != 0){
+          ExibirMenuPesquisar();
+          opcao = MenuInputUsuario();
+          
+          switch (opcao){
+            case 1:
+              ExibirRegistrosAno(arvore);
+              break;
+            case 4:
+              ExibirRegistrosIdade(arvore);
+              break;
+            case 0:
+              break;
+            default:
+          }
+        }
+        break;
+      
+      case 5: //* Menu de Desfazer
+        while(opcao != 0){
+          ExibirMenuDesfazer();
+          opcao = MenuInputUsuario();
+          
+          switch (opcao){
+            case 1:
+              ExibirLogAcoes(pilha);
+              break;
+            case 2:
+              Pop(pilha);
+              break;
+            case 0:
+              break;
+            default:
+          }
+        }
+        break;
+      
+      case 6: //* Menu de Carregar/Salvar
+        while(opcao != 0){
+          ExibirMenuCarregar();
+          opcao = MenuInputUsuario();
+          
+          switch (opcao){
+            case 1:
+              CarregarArquivo(lista, arvore);
+              break;
+            case 2:
+              SalvarArquivo(lista, arvore);
+              break;
+            case 0:
+              break;
+            default:
+          }
+        }
+        break;
+      
+      case 7: //* Menu de Sobre
         ExibirMenuSobre();
         system("pause");
         break;
@@ -97,6 +184,8 @@ int main() {
         ClearLDE(lista);
         ClearFila(fila);
         ClearHeap(heap);
+        ClearPilha(pilha);
+        ClearABB(arvore->raiz);
         return 0;
       default:
         printf("Opcao invalida. Tente novamente.\n");

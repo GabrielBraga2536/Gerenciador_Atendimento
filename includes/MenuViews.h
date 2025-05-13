@@ -4,14 +4,6 @@
 #include "BaseViews.h"
 
 
-void ExibirMenuAtendimentoPrioritario();
-
-void ExibirMenuPesquisar();
-
-void ExibirMenuDesfazer();
-
-void ExibirMenuCarregar();
-
 void ExibirMenuSobre();
 
 

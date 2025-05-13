@@ -92,7 +92,8 @@ void ExibirMenuPrincipal(){
   MenuItem("3. Atendimento Prioritario");
   MenuItem("4. Pesquisar");
   MenuItem("5. Desfazer");
-  MenuItem("6. Sobre");
+  MenuItem("6. Carregar/Salvar");
+  MenuItem("7. Sobre");
   MenuItem("0. Sair");
   MenuLinhaInferior();
 }

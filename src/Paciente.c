@@ -40,3 +40,9 @@ void ClearPaciente(Paciente *paciente) {
     free(paciente);
   }
 }
+
+int ValidarPaciente(Paciente *paciente) {
+  if (paciente->idade <= 0) { return 0; }
+  
+  return 1;
+}

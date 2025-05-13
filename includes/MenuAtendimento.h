@@ -4,15 +4,14 @@
 #include "Paciente.h"
 #include "BaseViews.h"
 #include "Debug.h"
-#include "LDE.h"
 #include "Fila.h"
-#include "Heap.h"
+#include "Pilha.h"
 
 void ExibirMenuAtendimento();
 
-void EnfileirarPaciente(Fila *fila, Paciente *paciente);
+void EnfileirarPaciente(Fila *fila, Paciente *paciente, Pilha *pilha);
 
-void DesenfileirarPaciente(Fila *fila);
+void DesenfileirarPaciente(Fila *fila, Pilha *pilha);
 
 void ExibirFilaAtendimento(Fila *fila);
 
