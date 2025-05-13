@@ -10,6 +10,10 @@ void ExibirMenuPesquisar();
 
 void ExibirRegistrosAno(ABB *abb);
 
+void ExibirRegistrosMes(ABB *abb);
+
+void ExibirRegistrosDia(ABB *abb);
+
 void ExibirRegistrosIdade(ABB *abb);
 
 

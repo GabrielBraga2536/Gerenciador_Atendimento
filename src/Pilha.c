@@ -34,19 +34,19 @@ void Push(Pilha *pilha, Paciente *paciente, int flag) {
   pilha->qtde++;
 }
 
-void Pop(Pilha *pilha) {
+CelulaPilha *Pop(Pilha *pilha) {
   IsMemoryAllocated(pilha);
   
   if (pilha->topo == NULL) {
     printf("Pilha vazia.\n");
-    return;
+    return NULL;
   }
   
   CelulaPilha *temp = pilha->topo;
   pilha->topo = pilha->topo->prox;
-  
-  free(temp);
   pilha->qtde--;
+
+  return temp;
 }
 
 void ClearPilha(Pilha *pilha) {

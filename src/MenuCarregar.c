@@ -13,7 +13,7 @@ void ExibirMenuCarregar(){
   MenuLinhaInferior();
 }
 
-void CarregarArquivo(LDE *lista, ABB *arvore) {
+void CarregarArquivo(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia) {
   FILE *arquivo = fopen("pacientes.txt", "r");
   IsFileOpen(arquivo, "pacientes.txt");
   
@@ -32,7 +32,10 @@ void CarregarArquivo(LDE *lista, ABB *arvore) {
     novoPaciente->Entrada->ano = ano;
     
     InserirLDE(lista, novoPaciente);
-    InserirABB(arvore, novoPaciente);
+    InserirABB_Idade(arvoreIdade, novoPaciente);
+    InserirABB_Ano(arvoreAno, novoPaciente);
+    InserirABB_Mes(arvoreMes, novoPaciente);
+    InserirABB_Dia(arvoreDia, novoPaciente);
   }
   
   fclose(arquivo);
@@ -41,7 +44,7 @@ void CarregarArquivo(LDE *lista, ABB *arvore) {
   system("pause");
 }
 
-void SalvarArquivo(LDE *lista, ABB *arvore) {
+void SalvarArquivo(LDE *lista) {
   FILE *arquivo = fopen("pacientesSalvos.txt", "w+");
   IsFileOpen(arquivo, "pacientesSalvos.txt");
   

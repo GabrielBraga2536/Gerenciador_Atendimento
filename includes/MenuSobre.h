@@ -10,6 +10,4 @@
 
 void ExibirMenuSobre();
 
-
-
 #endif /* MENUSOBRE_H */

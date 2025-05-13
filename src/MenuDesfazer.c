@@ -36,3 +36,31 @@ void ExibirLogAcoes(Pilha *pilha){
   printf("\n");
   system("pause");
 }
+
+void DesfazerUltimaAcao(Pilha *pilha, Fila *fila){
+  IsMemoryAllocated(pilha);
+  IsMemoryAllocated(fila);
+  
+  system("cls");
+  
+  MenuTituloIsolado("Desfazer Ultima Acao");
+  
+  if (pilha->qtde == 0){
+    printf("Nenhuma acao registrada.\n\n");
+    system("pause");
+    return;
+  }
+  
+  CelulaPilha *celula = Pop(pilha);
+  
+  if(celula->flag == 0){
+    printf("Paciente %s removido da fila.\n", celula->paciente->nome);
+    Desenfileirar(fila);
+  } 
+  else {
+    printf("Paciente %s adicionado novamente a fila.\n", celula->paciente->nome);
+    Enfileirar(fila, celula->paciente);
+  }
+  
+  system("pause");
+}

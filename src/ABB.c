@@ -48,7 +48,7 @@ void posOrdem(CelulaABB *raiz) {
   }
 }
 
-void InserirABB(ABB *abb, Paciente *paciente) {
+void InserirABB_Idade(ABB *abb, Paciente *paciente) {
   IsMemoryAllocated(abb);
   IsMemoryAllocated(paciente);
   
@@ -56,7 +56,8 @@ void InserirABB(ABB *abb, Paciente *paciente) {
   
   if (abb->raiz == NULL) {
     abb->raiz = nova;
-  } else {
+  } 
+  else {
     CelulaABB *atual = abb->raiz;
     CelulaABB *anterior = NULL;
     
@@ -64,14 +65,118 @@ void InserirABB(ABB *abb, Paciente *paciente) {
       anterior = atual;
       if (paciente->idade < atual->paciente->idade) {
         atual = atual->esq;
-      } else {
+      } 
+      else {
         atual = atual->dir;
       }
     }
     
     if (paciente->idade < anterior->paciente->idade) {
       anterior->esq = nova;
-    } else {
+    } 
+    else {
+      anterior->dir = nova;
+    }
+  }
+  
+  abb->qtde++;
+}
+
+void InserirABB_Ano(ABB *abb, Paciente *paciente) {
+  IsMemoryAllocated(abb);
+  IsMemoryAllocated(paciente);
+  
+  CelulaABB *nova = CriarCelulaABB(paciente);
+  
+  if (abb->raiz == NULL) {
+    abb->raiz = nova;
+  } 
+  else {
+    CelulaABB *atual = abb->raiz;
+    CelulaABB *anterior = NULL;
+    
+    while (atual != NULL) {
+      anterior = atual;
+      if (paciente->Entrada->ano < atual->paciente->Entrada->ano) {
+        atual = atual->esq;
+      } 
+      else {
+        atual = atual->dir;
+      }
+    }
+    
+    if (paciente->Entrada->ano < anterior->paciente->Entrada->ano) {
+      anterior->esq = nova;
+    } 
+    else {
+      anterior->dir = nova;
+    }
+  }
+  
+  abb->qtde++;
+}
+
+void InserirABB_Mes(ABB *abb, Paciente *paciente) {
+  IsMemoryAllocated(abb);
+  IsMemoryAllocated(paciente);
+  
+  CelulaABB *nova = CriarCelulaABB(paciente);
+  
+  if (abb->raiz == NULL) {
+    abb->raiz = nova;
+  } 
+  else {
+    CelulaABB *atual = abb->raiz;
+    CelulaABB *anterior = NULL;
+    
+    while (atual != NULL) {
+      anterior = atual;
+      if (paciente->Entrada->mes < atual->paciente->Entrada->mes) {
+        atual = atual->esq;
+      } 
+      else {
+        atual = atual->dir;
+      }
+    }
+    
+    if (paciente->Entrada->mes < anterior->paciente->Entrada->mes) {
+      anterior->esq = nova;
+    } 
+    else {
+      anterior->dir = nova;
+    }
+  }
+  
+  abb->qtde++;
+}
+
+void InserirABB_Dia(ABB *abb, Paciente *paciente) {
+  IsMemoryAllocated(abb);
+  IsMemoryAllocated(paciente);
+  
+  CelulaABB *nova = CriarCelulaABB(paciente);
+  
+  if (abb->raiz == NULL) {
+    abb->raiz = nova;
+  } 
+  else {
+    CelulaABB *atual = abb->raiz;
+    CelulaABB *anterior = NULL;
+    
+    while (atual != NULL) {
+      anterior = atual;
+      if (paciente->Entrada->dia < atual->paciente->Entrada->dia) {
+        atual = atual->esq;
+      } 
+      else {
+        atual = atual->dir;
+      }
+    }
+    
+    if (paciente->Entrada->dia < anterior->paciente->Entrada->dia) {
+      anterior->esq = nova;
+    } 
+    else {
       anterior->dir = nova;
     }
   }
@@ -154,23 +259,3 @@ void ClearABB(CelulaABB *raiz) {
   }
 }
 
-// Funções de comparação para qsort
-int cmpAno(const void* a, const void* b) {
-  return ((Paciente*)a)->Entrada->ano - ((Paciente*)b)->Entrada->ano;
-}
-
-int cmpMes(Paciente *a, Paciente *b) {
-  return (a->Entrada->mes - b->Entrada->mes);
-}
-
-int cmpDia(Paciente *a, Paciente *b) {
-  return (a->Entrada->dia - b->Entrada->dia);
-}
-
-void coletarRegistros(CelulaABB* raiz, Paciente *vetor, int i) {
-  if (raiz != NULL) {
-    coletarRegistros(raiz->esq, vetor, i);
-    vetor[i++] = *(raiz->paciente);
-    coletarRegistros(raiz->dir, vetor, i);
-  }
-}

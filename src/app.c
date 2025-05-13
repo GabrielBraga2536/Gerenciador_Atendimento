@@ -31,7 +31,10 @@ int main() {
   Fila *fila = CriarFila();
   Heap *heap = CriarHeap();
   Pilha *pilha = CriarPilha();
-  ABB *arvore = CriarABB();
+  ABB *arvoreIdade = CriarABB();
+  ABB *arvoreAno = CriarABB();
+  ABB *arvoreMes = CriarABB();
+  ABB *arvoreDia = CriarABB();
   
   while(1){
     system("cls");
@@ -47,7 +50,7 @@ int main() {
           
           switch (opcao){
             case 1:
-              CadastrarNovoPaciente(lista, arvore);
+              CadastrarNovoPaciente(lista, arvoreIdade, arvoreAno, arvoreMes, arvoreDia);
               break;
             case 2:
               Paciente *pacienteParaConsultar = BuscarPaciente(lista);
@@ -62,7 +65,7 @@ int main() {
               break;
             case 5:
               Paciente *pacienteParaRemover = BuscarPaciente(lista);
-              RemoverPaciente(pacienteParaRemover, lista, arvore);
+              RemoverPaciente(pacienteParaRemover, lista, arvoreIdade, arvoreAno, arvoreMes, arvoreDia);
               break;
             case 0:
               break;
@@ -125,10 +128,16 @@ int main() {
           
           switch (opcao){
             case 1:
-              ExibirRegistrosAno(arvore);
+              ExibirRegistrosAno(arvoreAno);
+              break;
+            case 2:
+              ExibirRegistrosMes(arvoreMes);
+              break;
+            case 3:
+              ExibirRegistrosDia(arvoreDia);
               break;
             case 4:
-              ExibirRegistrosIdade(arvore);
+              ExibirRegistrosIdade(arvoreIdade);
               break;
             case 0:
               break;
@@ -147,7 +156,7 @@ int main() {
               ExibirLogAcoes(pilha);
               break;
             case 2:
-              Pop(pilha);
+              DesfazerUltimaAcao(pilha, fila);
               break;
             case 0:
               break;
@@ -163,10 +172,10 @@ int main() {
           
           switch (opcao){
             case 1:
-              CarregarArquivo(lista, arvore);
+              CarregarArquivo(lista, arvoreIdade, arvoreAno, arvoreMes, arvoreDia);
               break;
             case 2:
-              SalvarArquivo(lista, arvore);
+              SalvarArquivo(lista);
               break;
             case 0:
               break;
@@ -185,7 +194,10 @@ int main() {
         ClearFila(fila);
         ClearHeap(heap);
         ClearPilha(pilha);
-        ClearABB(arvore->raiz);
+        ClearABB(arvoreIdade->raiz);
+        ClearABB(arvoreAno->raiz);
+        ClearABB(arvoreMes->raiz);
+        ClearABB(arvoreDia->raiz);
         return 0;
       default:
         printf("Opcao invalida. Tente novamente.\n");

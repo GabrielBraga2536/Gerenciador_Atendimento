@@ -20,14 +20,27 @@ void ExibirRegistrosAno(ABB *abb) {
   
   MenuTituloIsolado("Pesquisar por Ano");
   
-  Paciente vetor[abb->qtde];
-  coletarRegistros(abb->raiz, vetor, 0);
+  emOrdem(abb->raiz);
   
-  qsort(vetor, abb->qtde, sizeof(vetor)/(sizeof(Paciente)), cmpAno);
+  system("pause");
+}
+
+void ExibirRegistrosMes(ABB *abb) {
+  system("cls");
   
-  for (int i = 0; i < abb->qtde; i++) {
-    ExibirPaciente(&vetor[i]);
-  }
+  MenuTituloIsolado("Pesquisar por Mes");
+  
+  emOrdem(abb->raiz);
+  
+  system("pause");
+}
+
+void ExibirRegistrosDia(ABB *abb) {
+  system("cls");
+  
+  MenuTituloIsolado("Pesquisar por Dia");
+  
+  emOrdem(abb->raiz);
   
   system("pause");
 }

@@ -9,8 +9,8 @@
 
 void ExibirMenuCarregar();
 
-void CarregarArquivo(LDE *lista, ABB *arvore);
+void CarregarArquivo(LDE *lista, ABB *arvore, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia);
 
-void SalvarArquivo(LDE *lista, ABB *arvore);
+void SalvarArquivo(LDE *lista);
 
 #endif /* MENUCARREGAR_H */

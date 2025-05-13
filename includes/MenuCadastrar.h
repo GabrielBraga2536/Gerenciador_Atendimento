@@ -11,7 +11,7 @@
 
 void ExibirMenuCadastrar();
 
-void CadastrarNovoPaciente(LDE *lista, ABB *arvore);
+void CadastrarNovoPaciente(LDE *lista, ABB *arvore, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia);
 
 void ConsultarPaciente(LDE *lista, Paciente *paciente);
 
@@ -19,7 +19,7 @@ void ExibirListaCompleta(LDE *lista);
 
 void AtualizarPaciente(LDE *lista, Paciente *paciente);
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore);
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore,  ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia);
 
 
 

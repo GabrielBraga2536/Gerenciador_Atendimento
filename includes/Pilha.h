@@ -21,7 +21,7 @@ Pilha *CriarPilha();
 
 void Push(Pilha *pilha, Paciente *paciente, int flag);
 
-void Pop(Pilha *pilha);
+CelulaPilha *Pop(Pilha *pilha);
 
 void ClearPilha(Pilha *pilha);
 

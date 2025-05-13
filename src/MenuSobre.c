@@ -13,6 +13,6 @@ void ExibirMenuSobre(){
   MenuItem("Ciclo: 7");
   MenuItem("Curso: Engenharia de Robos");
   MenuItem("Disciplina: Estruturas de Dados");
-  MenuItem("2023-10-01 - Exemplo");
+  MenuItem("14/05/2025");
   MenuLinhaInferior();
 }

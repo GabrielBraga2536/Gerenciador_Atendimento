@@ -16,7 +16,7 @@ void ExibirMenuCadastrar() {
   MenuLinhaInferior();
 }
 
-void CadastrarNovoPaciente(LDE *lista, ABB *arvore) {
+void CadastrarNovoPaciente(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia) {
   char nome[50], RG[10];
   int idade;
   
@@ -37,7 +37,10 @@ void CadastrarNovoPaciente(LDE *lista, ABB *arvore) {
   
   if (novoPaciente != NULL) {
     InserirLDE(lista, novoPaciente);
-    InserirABB(arvore, novoPaciente);
+    InserirABB_Idade(arvoreIdade, novoPaciente);
+    InserirABB_Ano(arvoreAno, novoPaciente);
+    InserirABB_Mes(arvoreMes, novoPaciente);
+    InserirABB_Dia(arvoreDia, novoPaciente);
     
     printf("\nPaciente cadastrado com sucesso!\n\n");
     system("pause");
@@ -94,38 +97,14 @@ void AtualizarPaciente(LDE *lista, Paciente *paciente) {
   
   printf("Idade: ");
   scanf("%d", &paciente->idade);
-  
-  // Atualizar o arquivo com os dados do paciente atualizado
-  FILE *arquivoTemp = fopen("pacientes_temp.txt", "w+");
-  IsFileOpen(arquivoTemp, "pacientes_temp.txt");
-  
-  Celula *atual = lista->primeiro;
-  while (atual != NULL) {
-    if (atual->paciente == paciente) {
-      fprintf(arquivoTemp, "Nome: %s\nIdade: %d\nRG: %s\nEntrada: %d/%d/%d\n\n", 
-        paciente->nome, paciente->idade, paciente->RG, 
-        paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano
-      );
-    } else {
-      fprintf(arquivoTemp, "Nome: %s\nIdade: %d\nRG: %s\nEntrada: %d/%d/%d\n\n", 
-        atual->paciente->nome, atual->paciente->idade, atual->paciente->RG, 
-        atual->paciente->Entrada->dia, atual->paciente->Entrada->mes, atual->paciente->Entrada->ano
-      );
-    }
-    atual = atual->prox;
-  }
-  fclose(arquivoTemp);
-  
-  // Substituir o arquivo original pelo temporário
-  remove("pacientes.txt");
-  rename("pacientes_temp.txt", "pacientes.txt");
-  
 }
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore) {
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia) {
   system("cls");
+  IsMemoryAllocated(arvoreAno);
   
   MenuTituloIsolado("Remover Paciente");
+  RemoverABB(arvoreAno, paciente);
   
   if (paciente->idade == 0) {
     printf("Paciente nao encontrado.\n\n");
@@ -135,7 +114,8 @@ void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore) {
   
   RemoverLDE(lista, paciente);
   RemoverABB(arvore, paciente);
-  
+  RemoverABB(arvoreMes, paciente);
+  RemoverABB(arvoreDia, paciente);
   
   printf("\nPaciente removido com sucesso!\n\n");
   system("pause");
