@@ -4,12 +4,10 @@
 #include "Paciente.h"
 #include "BaseViews.h"
 #include "Debug.h"
-#include "LDE.h"
-#include "Fila.h"
-#include "Heap.h"
+#include "Pilha.h"
 
 void ExibirMenuDesfazer();
 
-
+void ExibirLogAcoes(Pilha *pilha);
 
 #endif /* MENUDESFAZER_H */

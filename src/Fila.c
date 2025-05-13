@@ -35,13 +35,12 @@ void Enfileirar(Fila *fila, Paciente *paciente){
   fila->qtde++;
 }
 
-void Desenfileirar(Fila *fila, Paciente *paciente){
+Paciente *Desenfileirar(Fila *fila){
   IsMemoryAllocated(fila);
-  IsMemoryAllocated(paciente);
   
   if(fila->head == NULL){
     printf("Fila vazia.\n");
-    return;
+    return NULL;
   }
   
   CelulaFila *temp = fila->head;
@@ -53,8 +52,7 @@ void Desenfileirar(Fila *fila, Paciente *paciente){
   
   fila->qtde--;
   
-  // Liberar a célula removida
-  free(temp);
+  return temp->paciente;
 }
 
 void ExibirFila(Fila *fila){

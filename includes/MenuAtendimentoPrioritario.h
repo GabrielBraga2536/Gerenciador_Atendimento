@@ -4,11 +4,15 @@
 #include "Paciente.h"
 #include "BaseViews.h"
 #include "Debug.h"
-#include "LDE.h"
-#include "Fila.h"
 #include "Heap.h"
 
 void ExibirMenuAtendimentoPrioritario();
+
+void EnfileirarPacientePrioritario(Heap *heap, Paciente *paciente);
+
+void DesenfileirarPacientePrioritario(Heap *heap);
+
+void ExibirFilaPrioritaria(Heap *heap);
 
 
 

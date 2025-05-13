@@ -4,12 +4,13 @@
 #include "Paciente.h"
 #include "BaseViews.h"
 #include "Debug.h"
-#include "LDE.h"
-#include "Fila.h"
-#include "Heap.h"
+#include "ABB.h"
 
 void ExibirMenuPesquisar();
 
+void ExibirRegistrosAno(ABB *abb);
+
+void ExibirRegistrosIdade(ABB *abb);
 
 
 #endif /* MENUPESQUISAR_H */

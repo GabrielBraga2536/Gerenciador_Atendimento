@@ -16,13 +16,13 @@ void ExibirMenuCadastrar() {
   MenuLinhaInferior();
 }
 
-void CadastrarNovoPaciente(LDE *lista, FILE *arquivo, Fila *fila, Heap *heap) {
+void CadastrarNovoPaciente(LDE *lista, ABB *arvore) {
   char nome[50], RG[10];
   int idade;
   
   system("cls");
   
-  MenuTitulo("Cadastrar Novo Paciente");
+  MenuTituloIsolado("Cadastrar Novo Paciente");
   
   printf("Nome: ");
   scanf("%s", nome);
@@ -36,9 +36,8 @@ void CadastrarNovoPaciente(LDE *lista, FILE *arquivo, Fila *fila, Heap *heap) {
   Paciente *novoPaciente = CriarPaciente(nome, RG, idade);
   
   if (novoPaciente != NULL) {
-    InserirHeap(heap, novoPaciente);
-    Enfileirar(fila, novoPaciente);
-    InserirLDE(lista, novoPaciente, arquivo);
+    InserirLDE(lista, novoPaciente);
+    InserirABB(arvore, novoPaciente);
     
     printf("\nPaciente cadastrado com sucesso!\n\n");
     system("pause");
@@ -51,11 +50,10 @@ void CadastrarNovoPaciente(LDE *lista, FILE *arquivo, Fila *fila, Heap *heap) {
 void ConsultarPaciente(LDE *lista, Paciente *paciente) {
   system("cls");
   
-  MenuTitulo("Consultar Paciente");
+  MenuTituloIsolado("Consultar Paciente");
   
-  if (paciente == NULL) {
-    MenuItem("Paciente nao encontrado.");
-    MenuLinhaInferior();
+  if (paciente->idade == 0) {
+    printf("\nPaciente nao encontrado\n\n.");
   } else {
     ExibirPaciente(paciente);
   }
@@ -66,7 +64,7 @@ void ConsultarPaciente(LDE *lista, Paciente *paciente) {
 void ExibirListaCompleta(LDE *lista) {
   system("cls");
   
-  MenuTitulo("Lista Completa de Pacientes");
+  MenuTituloIsolado("Lista Completa de Pacientes");
   
   if (lista == NULL || lista->primeiro == NULL) {
     printf("Lista vazia.\n");
@@ -77,12 +75,12 @@ void ExibirListaCompleta(LDE *lista) {
   system("pause");
 }
 
-void AtualizarPaciente(Paciente *paciente, LDE *lista) {
+void AtualizarPaciente(LDE *lista, Paciente *paciente) {
   system("cls");
   
-  MenuTitulo("Atualizar Paciente");
+  MenuTituloIsolado("Atualizar Paciente");
   
-  if (paciente == NULL) {
+  if (paciente->idade == 0) {
     printf("Paciente nao encontrado.\n\n");
     system("pause");
     return;
@@ -124,20 +122,20 @@ void AtualizarPaciente(Paciente *paciente, LDE *lista) {
   
 }
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, Fila *fila, Heap *heap, FILE *arquivo) {
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore) {
   system("cls");
   
-  MenuTitulo("Remover Paciente");
+  MenuTituloIsolado("Remover Paciente");
   
-  if (paciente == NULL) {
+  if (paciente->idade == 0) {
     printf("Paciente nao encontrado.\n\n");
     system("pause");
     return;
   }
   
-  RemoverLDE(lista, paciente, arquivo);
-  Desenfileirar(fila, paciente);
-  RemoverHeap(heap);
+  RemoverLDE(lista, paciente);
+  RemoverABB(arvore, paciente);
+  
   
   printf("\nPaciente removido com sucesso!\n\n");
   system("pause");

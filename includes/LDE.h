@@ -17,14 +17,14 @@ typedef struct {
 
 LDE *CriarLDE();
 
-void InserirLDE(LDE *lista, Paciente *paciente, FILE *arquivo);
+void InserirLDE(LDE *lista, Paciente *paciente);
 
-void RemoverLDE(LDE *lista, Paciente *paciente, FILE *arquivo);
+void RemoverLDE(LDE *lista, Paciente *paciente);
 
 void ExibirLDE(LDE *lista);
 
 void ClearLDE(LDE *lista);
 
-Paciente *BuscarPaciente(LDE *lista, char RG[]);
+Paciente *BuscarPaciente(LDE *lista);
 
 #endif /* LDE_H */

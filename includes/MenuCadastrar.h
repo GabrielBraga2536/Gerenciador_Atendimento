@@ -5,21 +5,21 @@
 #include "BaseViews.h"
 #include "Debug.h"
 #include "LDE.h"
-#include "Fila.h"
-#include "Heap.h"
+#include "Pilha.h"
+#include "ABB.h"
 
 
 void ExibirMenuCadastrar();
 
-void CadastrarNovoPaciente(LDE *lista, FILE *arquivo, Fila *fila, Heap *heap);
+void CadastrarNovoPaciente(LDE *lista, ABB *arvore);
 
 void ConsultarPaciente(LDE *lista, Paciente *paciente);
 
 void ExibirListaCompleta(LDE *lista);
 
-void AtualizarPaciente(Paciente *paciente, LDE *lista);
+void AtualizarPaciente(LDE *lista, Paciente *paciente);
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, Fila *fila, Heap *heap, FILE *arquivo);
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore);
 
 
 

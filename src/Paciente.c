@@ -26,31 +26,12 @@ Paciente *CriarPaciente(char nome[], char RG[], int idade) {
 }
 
 void ExibirPaciente(Paciente *paciente) {
-  char *nome = "Nome: ";
-  char *RG = "RG: ";
-  char *idade = "Idade: ";
-  char *data = "Data de Entrada: ";
   
-  strcat(nome, paciente->nome);
-  strcat(RG, paciente->RG);
-  
-  char idadeStr[10];
-  sprintf(idadeStr, "%d", paciente->idade);
-  strcat(idade, idadeStr);
-  
-  char dataStr[15];
-  sprintf(dataStr, "%02d/%02d/%04d", paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano);
-  strcat(data, dataStr);
-  
-  if (paciente != NULL) {
-    MenuItem(nome);
-    MenuItem(RG);
-    MenuItem(idade);
-    MenuItem(data);
-    MenuItem(" ");
-    MenuLinhaInferior();
-    printf("\n\n");
-  } 
+  printf("Nome: %s\n", paciente->nome);
+  printf("RG: %s\n", paciente->RG);
+  printf("Idade: %d\n", paciente->idade);
+  printf("Entrada: %02d/%02d/%04d\n", paciente->Entrada->dia, paciente->Entrada->mes, paciente->Entrada->ano);
+  printf("\n");
 }
 
 void ClearPaciente(Paciente *paciente) {
@@ -58,4 +39,10 @@ void ClearPaciente(Paciente *paciente) {
     free(paciente->Entrada);
     free(paciente);
   }
+}
+
+int ValidarPaciente(Paciente *paciente) {
+  if (paciente->idade <= 0) { return 0; }
+  
+  return 1;
 }
