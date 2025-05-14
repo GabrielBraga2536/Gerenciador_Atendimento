@@ -2,31 +2,12 @@
 #include <stdlib.h>
 #include <windows.h>
 
-#include "BaseViews.h"
-#include "Paciente.h"
-#include "LDE.h"
-#include "Fila.h"
-#include "Heap.h"
-#include "Pilha.h"
-#include "ABB.h"
-
-#include "Debug.h"
-
-#include "MenuCadastrar.h"
-#include "MenuAtendimento.h"
-#include "MenuAtendimentoPrioritario.h"
-#include "MenuPesquisar.h"
-#include "MenuDesfazer.h"
-#include "MenuCarregar.h"
-#include "MenuSobre.h"
+#include "app.h"
 
 
-int main() {
+int app() {
   int opcao;
-  
-  FILE *arquivo = fopen("pacientes.txt", "a+");
-  IsFileOpen(arquivo, "pacientes.txt");
-  
+
   LDE *lista = CriarLDE();
   Fila *fila = CriarFila();
   Heap *heap = CriarHeap();
@@ -189,7 +170,6 @@ int main() {
         system("pause");
         break;
       case 0:
-        fclose(arquivo);
         ClearLDE(lista);
         ClearFila(fila);
         ClearHeap(heap);

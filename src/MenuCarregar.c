@@ -14,7 +14,7 @@ void ExibirMenuCarregar(){
 }
 
 void CarregarArquivo(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia) {
-  FILE *arquivo = fopen("pacientes.txt", "r");
+  FILE *arquivo = fopen("src/pacientes.txt", "r");
   IsFileOpen(arquivo, "pacientes.txt");
   
   system("cls");
@@ -45,7 +45,7 @@ void CarregarArquivo(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *arvoreMe
 }
 
 void SalvarArquivo(LDE *lista) {
-  FILE *arquivo = fopen("pacientesSalvos.txt", "w+");
+  FILE *arquivo = fopen("src/pacientesSalvos.txt", "w+");
   IsFileOpen(arquivo, "pacientesSalvos.txt");
   
   system("cls");

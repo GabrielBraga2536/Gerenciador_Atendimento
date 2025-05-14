@@ -1,6 +1,9 @@
 #include <stdio.h>
-#include "views.c"
+
+#include "app.h"
 
 int main(){
-
+  app();
+  
+  return 0;
 }
