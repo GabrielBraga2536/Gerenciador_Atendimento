@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 LDE *CriarLDE(){
   LDE *lista = (LDE*)malloc(sizeof(LDE));
   lista->primeiro = NULL;
@@ -14,7 +15,7 @@ void InserirLDE(LDE *lista, Paciente *paciente){
   IsMemoryAllocated(lista);
   IsMemoryAllocated(paciente);
   
-  // Criar nova célula
+  // Aloca memória para a nova célula
   Celula *nova = (Celula*)malloc(sizeof(Celula));
   nova->paciente = paciente;
   nova->prox = NULL;
@@ -61,6 +62,8 @@ void ExibirLDE(LDE *lista){
   IsMemoryAllocated(lista);
   
   Celula *atual = lista->primeiro;
+  
+  //Percorre a lista e exibe os pacientes
   while(atual != NULL){
     ExibirPaciente(atual->paciente);
     atual = atual->prox;
@@ -71,6 +74,8 @@ void ClearLDE(LDE *lista){
   IsMemoryAllocated(lista);
   
   Celula *atual = lista->primeiro;
+
+  // Percorre a lista e libera a memória de cada célula
   while(atual != NULL){
     Celula *temp = atual;
     atual = atual->prox;
@@ -78,12 +83,13 @@ void ClearLDE(LDE *lista){
     free(temp);
   }
   
+  // Libera a memória da lista
   free(lista);
 }
 
 Paciente *BuscarPaciente(LDE *lista){
   IsMemoryAllocated(lista);
-  char RG[10];
+  char RG[10];    // RG do paciente a ser buscado
   
   system("cls");
   
@@ -92,13 +98,18 @@ Paciente *BuscarPaciente(LDE *lista){
   scanf("%s", RG);
   
   Celula *atual = lista->primeiro;
+
+  // Percorre a lista e busca o paciente pelo RG	
   while(atual != NULL){
-    if(strcmp(atual->paciente->RG, RG) == 0){
-      return atual->paciente;
+    // Compara o RG do paciente atual com o RG buscado
+    if(strcmp(atual->paciente->RG, RG) == 0){   //? Se o RG for igual, o método "strcmp" retorna 0
+      return atual->paciente;                   //  Retorna o paciente encontrado
     }
     atual = atual->prox;
   }
   
+  // Se o paciente não for encontrado, retorna um paciente vazio
+  // Um paciente vazio é um paciente com nome, RG e idade vazios, para evitar erros
   Paciente *pacienteVazio = CriarPaciente("", "", 0);
   
   return pacienteVazio;

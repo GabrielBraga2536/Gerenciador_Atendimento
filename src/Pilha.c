@@ -45,7 +45,7 @@ CelulaPilha *Pop(Pilha *pilha) {
   CelulaPilha *temp = pilha->topo;
   pilha->topo = pilha->topo->prox;
   pilha->qtde--;
-
+  
   return temp;
 }
 

@@ -237,8 +237,6 @@ void ClearABB(CelulaABB *raiz) {
   if (raiz != NULL) {
     ClearABB(raiz->esq);
     ClearABB(raiz->dir);
-    // Remova a linha abaixo se Paciente é liberado em outro lugar
-    // ClearPaciente(raiz->paciente);
     free(raiz);
   }
 }
@@ -249,98 +247,5 @@ void LimparABB(ABB *abb) {
     ClearABB(abb->raiz);
     abb->raiz = NULL;
     abb->qtde = 0;
-  }
-}
-
-int MAX(int x, int y) {
-  if (x >= y)
-    return x;
-  else
-    return y;
-}
-
-int altura(CelulaABB *x) {
-  if (x == NULL) {
-    return -1;
-  }
-  return MAX(altura(x->esq), altura(x->dir)) + 1;
-}
-
-int fatorBalanceamento(CelulaABB *x) { return altura(x->dir) - altura(x->esq); }
-
-void RotacaoEsquerda(ABB *arvore, CelulaABB *x) {
-  CelulaABB *y = x->dir;
-  
-  x->dir = y->esq;
-  
-  if (y->esq != NULL) {
-    y->esq->pai = x;
-  }
-  
-  y->pai = x->pai;
-  
-  if (x->pai == NULL) {
-    arvore->raiz = y;
-  } 
-  else if (x == x->pai->esq) {
-    x->pai->esq = y;
-  } 
-  else {
-    x->pai->dir = y;
-  }
-  
-  y->esq = x;
-  x->pai = y;
-  
-}
-
-void RotacaoDireita(ABB *arvore, CelulaABB *x) {
-  CelulaABB *y = x->esq;
-  
-  x->esq = y->dir;
-  
-  if (y->dir != NULL) {
-    y->dir->pai = x;
-  }
-  
-  y->pai = x->pai;
-  
-  if (x->pai == NULL) {
-    arvore->raiz = y;
-  } 
-  else if (x == x->pai->dir) {
-    x->pai->dir = y;
-  } 
-  else {
-    x->pai->esq = y;
-  }
-  
-  y->dir = x;
-  x->pai = y;
-  
-}
-
-void Balanceie(ABB *arvore, CelulaABB *x) {
-  int fb = fatorBalanceamento(x);
-  
-  if (fb == 2) {
-    if (fatorBalanceamento(x->dir) < 0) {
-      RotacaoDireita(arvore, x->dir);
-    }
-    RotacaoEsquerda(arvore, x);
-  } 
-  else if (fb == -2) {
-    if (fatorBalanceamento(x->esq) > 0) {
-      RotacaoEsquerda(arvore, x->esq);
-    }
-    RotacaoDireita(arvore, x);
-  }
-  
-  if (fb > 1 || fb < -1) {
-    if (x->pai != NULL) {
-      Balanceie(arvore, x->pai);
-    } else {
-      arvore->raiz = x;
-    }
   }
 }

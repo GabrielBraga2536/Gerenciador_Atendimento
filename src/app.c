@@ -7,7 +7,7 @@
 
 int app() {
   int opcao;
-
+  
   LDE *lista = CriarLDE();
   Fila *fila = CriarFila();
   Heap *heap = CriarHeap();
