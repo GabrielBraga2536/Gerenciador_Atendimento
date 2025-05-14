@@ -53,13 +53,23 @@ void DesfazerUltimaAcao(Pilha *pilha, Fila *fila){
   
   CelulaPilha *celula = Pop(pilha);
   
-  if(celula->flag == 0){
+  if(celula->flag == 0) {
     printf("Paciente %s removido da fila.\n", celula->paciente->nome);
-    Desenfileirar(fila);
+    if(fila->qtde == 1) {
+      Desenfileirar(fila);
+    }
+    else {
+      RemoverCelulaFila(fila, celula->paciente);
+    }
   } 
   else {
     printf("Paciente %s adicionado novamente a fila.\n", celula->paciente->nome);
-    Enfileirar(fila, celula->paciente);
+    if(fila->qtde == 0) {
+      Enfileirar(fila, celula->paciente);
+    }
+    else {
+      ColocarNoComeco(fila, celula->paciente);
+    }
   }
   
   system("pause");

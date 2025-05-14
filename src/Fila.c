@@ -70,6 +70,39 @@ void ExibirFila(Fila *fila){
   }
 }
 
+void RemoverCelulaFila(Fila *fila, Paciente *paciente){
+  IsMemoryAllocated(paciente);
+  
+  CelulaFila *temp = fila->head;
+  CelulaFila *anterior = NULL;
+  
+  while(temp != NULL && temp->paciente != paciente){
+    anterior = temp;
+    temp = temp->prox;
+  }
+  
+  anterior->prox = temp->prox;
+  temp->prox = NULL;
+  fila->qtde--;
+}
+
+void ColocarNoComeco(Fila *fila, Paciente *paciente){
+  IsMemoryAllocated(fila);
+  IsMemoryAllocated(paciente);
+  
+  CelulaFila *nova = CriarCelulaFila(paciente);
+  
+  if(fila->head == NULL){
+    fila->head = nova;
+    fila->tail = nova;
+  }else{
+    nova->prox = fila->head;
+    fila->head = nova;
+  }
+  
+  fila->qtde++;
+}
+
 void ClearFila(Fila *fila){
   IsMemoryAllocated(fila);
   

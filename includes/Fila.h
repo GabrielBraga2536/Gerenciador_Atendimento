@@ -25,6 +25,10 @@ Paciente *Desenfileirar(Fila *fila);
 
 void ExibirFila(Fila *fila);
 
+void RemoverCelulaFila(Fila *fila, Paciente *paciente);
+
+void ColocarNoComeco(Fila *fila, Paciente *paciente);
+
 void ClearFila(Fila *fila);
 
 #endif /* FILA_H */
