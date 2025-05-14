@@ -48,7 +48,7 @@ void posOrdem(CelulaABB *raiz) {
   }
 }
 
-void InserirABB_Idade(ABB *abb, Paciente *paciente) {
+void InserirABB(ABB* abb, Paciente *paciente, int flag) {
   IsMemoryAllocated(abb);
   IsMemoryAllocated(paciente);
   
@@ -61,201 +61,286 @@ void InserirABB_Idade(ABB *abb, Paciente *paciente) {
     CelulaABB *atual = abb->raiz;
     CelulaABB *anterior = NULL;
     
-    while (atual != NULL) {
-      anterior = atual;
-      if (paciente->idade < atual->paciente->idade) {
-        atual = atual->esq;
+    switch (flag){
+    case 1: //* Ordena por Ano
+      while (atual != NULL) {
+        anterior = atual;
+        if (paciente->Entrada->ano < atual->paciente->Entrada->ano) {
+          atual = atual->esq;
+        } 
+        else {
+          atual = atual->dir;
+        }
+      }
+      
+      if (paciente->Entrada->ano < anterior->paciente->Entrada->ano) {
+        anterior->esq = nova;
       } 
       else {
-        atual = atual->dir;
+        anterior->dir = nova;
       }
+      break;
+      
+    case 2: //* Ordena por Mes
+      while (atual != NULL) {
+        anterior = atual;
+        if (paciente->Entrada->mes < atual->paciente->Entrada->mes) {
+          atual = atual->esq;
+        } 
+        else {
+          atual = atual->dir;
+        }
+      } 
+      
+      if (paciente->Entrada->mes < anterior->paciente->Entrada->mes) {
+        anterior->esq = nova;
+      } 
+      else {
+        anterior->dir = nova;
+      }
+      break;
+    
+    case 3: //* Ordena por Dia
+      while (atual != NULL) {
+        anterior = atual;
+        if (paciente->Entrada->dia < atual->paciente->Entrada->dia) {
+          atual = atual->esq;
+        } 
+        else {
+          atual = atual->dir;
+        }
+      } 
+      
+      if (paciente->Entrada->dia < anterior->paciente->Entrada->dia) {
+        anterior->esq = nova;
+      } 
+      else {
+        anterior->dir = nova;
+      }
+      break;
+    
+    case 4: //* Ordena por Idade
+      while (atual != NULL) {
+        anterior = atual;
+        if (paciente->idade < atual->paciente->idade) {
+          atual = atual->esq;
+        } 
+        else {
+          atual = atual->dir;
+        }
+      } 
+      
+      if (paciente->idade < anterior->paciente->idade) {
+        anterior->esq = nova;
+      } 
+      else {
+        anterior->dir = nova;
+      }
+      break;
+    default:
+      break;
     }
     
-    if (paciente->idade < anterior->paciente->idade) {
-      anterior->esq = nova;
-    } 
-    else {
-      anterior->dir = nova;
-    }
   }
   
   abb->qtde++;
 }
 
-void InserirABB_Ano(ABB *abb, Paciente *paciente) {
-  IsMemoryAllocated(abb);
+void RemoverABB(ABB* arvore, Paciente *paciente, int flag) {
+  IsMemoryAllocated(arvore);
   IsMemoryAllocated(paciente);
   
-  CelulaABB *nova = CriarCelulaABB(paciente);
+  CelulaABB *vertice = arvore->raiz;
+  CelulaABB *verticePai = NULL;
   
-  if (abb->raiz == NULL) {
-    abb->raiz = nova;
-  } 
-  else {
-    CelulaABB *atual = abb->raiz;
-    CelulaABB *anterior = NULL;
+  
+  
+  // Buscar o vertice a ser removido
+  while (vertice != NULL && vertice->paciente->RG != paciente->RG) {
+    verticePai = vertice;
     
-    while (atual != NULL) {
-      anterior = atual;
-      if (paciente->Entrada->ano < atual->paciente->Entrada->ano) {
-        atual = atual->esq;
-      } 
-      else {
-        atual = atual->dir;
+    if(flag == 1){
+      if (paciente->Entrada->ano < vertice->paciente->Entrada->ano) {
+        vertice = vertice->esq;
+      } else {
+        vertice = vertice->dir;
       }
     }
-    
-    if (paciente->Entrada->ano < anterior->paciente->Entrada->ano) {
-      anterior->esq = nova;
-    } 
-    else {
-      anterior->dir = nova;
-    }
-  }
-  
-  abb->qtde++;
-}
-
-void InserirABB_Mes(ABB *abb, Paciente *paciente) {
-  IsMemoryAllocated(abb);
-  IsMemoryAllocated(paciente);
-  
-  CelulaABB *nova = CriarCelulaABB(paciente);
-  
-  if (abb->raiz == NULL) {
-    abb->raiz = nova;
-  } 
-  else {
-    CelulaABB *atual = abb->raiz;
-    CelulaABB *anterior = NULL;
-    
-    while (atual != NULL) {
-      anterior = atual;
-      if (paciente->Entrada->mes < atual->paciente->Entrada->mes) {
-        atual = atual->esq;
-      } 
-      else {
-        atual = atual->dir;
+    else if(flag == 2){
+      if (paciente->Entrada->mes < vertice->paciente->Entrada->mes) {
+        vertice = vertice->esq;
+      } else {
+        vertice = vertice->dir;
       }
     }
-    
-    if (paciente->Entrada->mes < anterior->paciente->Entrada->mes) {
-      anterior->esq = nova;
-    } 
-    else {
-      anterior->dir = nova;
-    }
-  }
-  
-  abb->qtde++;
-}
-
-void InserirABB_Dia(ABB *abb, Paciente *paciente) {
-  IsMemoryAllocated(abb);
-  IsMemoryAllocated(paciente);
-  
-  CelulaABB *nova = CriarCelulaABB(paciente);
-  
-  if (abb->raiz == NULL) {
-    abb->raiz = nova;
-  } 
-  else {
-    CelulaABB *atual = abb->raiz;
-    CelulaABB *anterior = NULL;
-    
-    while (atual != NULL) {
-      anterior = atual;
-      if (paciente->Entrada->dia < atual->paciente->Entrada->dia) {
-        atual = atual->esq;
-      } 
-      else {
-        atual = atual->dir;
+    else if(flag == 3){
+      if (paciente->Entrada->dia < vertice->paciente->Entrada->dia) {
+        vertice = vertice->esq;
+      } else {
+        vertice = vertice->dir;
       }
     }
-    
-    if (paciente->Entrada->dia < anterior->paciente->Entrada->dia) {
-      anterior->esq = nova;
-    } 
-    else {
-      anterior->dir = nova;
+    else if(flag == 4){
+      if (paciente->idade < vertice->paciente->idade) {
+        vertice = vertice->esq;
+      } else {
+        vertice = vertice->dir;
+      }
     }
   }
   
-  abb->qtde++;
-}
-
-void RemoverABB(ABB *abb, Paciente *paciente) {
-  IsMemoryAllocated(abb);
-  IsMemoryAllocated(paciente);
-  
-  CelulaABB *atual = abb->raiz;
-  CelulaABB *anterior = NULL;
-  
-  while (atual != NULL && atual->paciente != paciente) {
-    anterior = atual;
-    if (paciente->idade < atual->paciente->idade) {
-      atual = atual->esq;
-    } else {
-      atual = atual->dir;
-    }
-  }
-  
-  if (atual == NULL) {
-    printf("Paciente nao encontrado na ABB.\n");
+  if (vertice == NULL) {
+    printf("Paciente não encontrado na árvore.\n");
     return;
   }
   
-  if (atual->esq == NULL && atual->dir == NULL) { // Folha
-    if (anterior == NULL) {
-      abb->raiz = NULL;
-    } else if (anterior->esq == atual) {
-      anterior->esq = NULL;
+  // Caso 1: Nó sem filhos
+  if (vertice->esq == NULL && vertice->dir == NULL) {
+    if (verticePai == NULL) { // Nó é a raiz
+      arvore->raiz = NULL;
+    } else if (verticePai->esq == vertice) {
+      verticePai->esq = NULL;
     } else {
-      anterior->dir = NULL;
+      verticePai->dir = NULL;
     }
-  } else if (atual->esq == NULL || atual->dir == NULL) { // Um filho
-    CelulaABB *filho = (atual->esq != NULL) ? atual->esq : atual->dir;
-    
-    if (anterior == NULL) {
-      abb->raiz = filho;
-    } else if (anterior->esq == atual) {
-      anterior->esq = filho;
-    } else {
-      anterior->dir = filho;
-    }
-  } else { // Dois filhos
-    // Encontrar o sucessor
-    CelulaABB *sucessor = atual->dir;
-    CelulaABB *sucessorAnterior = atual;
-    
-    while (sucessor->esq != NULL) {
-      sucessorAnterior = sucessor;
-      sucessor = sucessor->esq;
-    }
-    
-    // Substituir o valor do nó a ser removido pelo sucessor
-    atual->paciente = sucessor->paciente;
-    
-    // Remover o sucessor
-    if (sucessorAnterior == atual) {
-      sucessorAnterior->dir = sucessor->dir;
-    } else {
-      sucessorAnterior->esq = sucessor->dir;
-    }
-    
-    free(sucessor);
+    free(vertice);
   }
-  
-  ClearPaciente(atual->paciente);
-  free(atual);
+  // Caso 2: Nó com um único filho
+  else if (vertice->esq == NULL || vertice->dir == NULL) {
+    CelulaABB *filho = (vertice->esq != NULL) ? vertice->esq : vertice->dir;
+    
+    if (verticePai == NULL) { // Nó é a raiz
+        arvore->raiz = filho;
+    } else if (verticePai->esq == vertice) {
+        verticePai->esq = filho;
+    } else {
+        verticePai->dir = filho;
+    }
+    filho->pai = verticePai;
+    free(vertice);
+  }
+  // Caso 3: Nó com dois filhos
+  else {
+    CelulaABB *sucessor = vertice->dir;
+    while (sucessor->esq != NULL) {
+        sucessor = sucessor->esq;
+    }
+    
+    vertice->paciente = sucessor->paciente; // Troca os valores
+    RemoverABB(arvore, sucessor->paciente, flag);   // Remove o sucessor
+  }
+
+  arvore->qtde--;
 }
 
 void ClearABB(CelulaABB *raiz) {
   if (raiz != NULL) {
     ClearABB(raiz->esq);
     ClearABB(raiz->dir);
-    ClearPaciente(raiz->paciente);
+    // Remova a linha abaixo se Paciente é liberado em outro lugar
+    // ClearPaciente(raiz->paciente);
     free(raiz);
   }
 }
 
+// Função para limpar toda a ABB e atualizar a raiz para NULL
+void LimparABB(ABB *abb) {
+  if (abb != NULL && abb->raiz != NULL) {
+    ClearABB(abb->raiz);
+    abb->raiz = NULL;
+    abb->qtde = 0;
+  }
+}
+
+int MAX(int x, int y) {
+  if (x >= y)
+    return x;
+  else
+    return y;
+}
+
+int altura(CelulaABB *x) {
+  if (x == NULL) {
+    return -1;
+  }
+  return MAX(altura(x->esq), altura(x->dir)) + 1;
+}
+
+int fatorBalanceamento(CelulaABB *x) { return altura(x->dir) - altura(x->esq); }
+
+void RotacaoEsquerda(ABB *arvore, CelulaABB *x) {
+  CelulaABB *y = x->dir;
+  
+  x->dir = y->esq;
+  
+  if (y->esq != NULL) {
+    y->esq->pai = x;
+  }
+  
+  y->pai = x->pai;
+  
+  if (x->pai == NULL) {
+    arvore->raiz = y;
+  } 
+  else if (x == x->pai->esq) {
+    x->pai->esq = y;
+  } 
+  else {
+    x->pai->dir = y;
+  }
+  
+  y->esq = x;
+  x->pai = y;
+  
+}
+
+void RotacaoDireita(ABB *arvore, CelulaABB *x) {
+  CelulaABB *y = x->esq;
+  
+  x->esq = y->dir;
+  
+  if (y->dir != NULL) {
+    y->dir->pai = x;
+  }
+  
+  y->pai = x->pai;
+  
+  if (x->pai == NULL) {
+    arvore->raiz = y;
+  } 
+  else if (x == x->pai->dir) {
+    x->pai->dir = y;
+  } 
+  else {
+    x->pai->esq = y;
+  }
+  
+  y->dir = x;
+  x->pai = y;
+  
+}
+
+void Balanceie(ABB *arvore, CelulaABB *x) {
+  int fb = fatorBalanceamento(x);
+  
+  if (fb == 2) {
+    if (fatorBalanceamento(x->dir) < 0) {
+      RotacaoDireita(arvore, x->dir);
+    }
+    RotacaoEsquerda(arvore, x);
+  } 
+  else if (fb == -2) {
+    if (fatorBalanceamento(x->esq) > 0) {
+      RotacaoEsquerda(arvore, x->esq);
+    }
+    RotacaoDireita(arvore, x);
+  }
+  
+  if (fb > 1 || fb < -1) {
+    if (x->pai != NULL) {
+      Balanceie(arvore, x->pai);
+    } else {
+      arvore->raiz = x;
+    }
+  }
+}

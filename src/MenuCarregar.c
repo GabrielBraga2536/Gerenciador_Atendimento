@@ -32,10 +32,10 @@ void CarregarArquivo(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *arvoreMe
     novoPaciente->Entrada->ano = ano;
     
     InserirLDE(lista, novoPaciente);
-    InserirABB_Idade(arvoreIdade, novoPaciente);
-    InserirABB_Ano(arvoreAno, novoPaciente);
-    InserirABB_Mes(arvoreMes, novoPaciente);
-    InserirABB_Dia(arvoreDia, novoPaciente);
+    InserirABB(arvoreAno, novoPaciente, 1);
+    InserirABB(arvoreMes, novoPaciente, 2);
+    InserirABB(arvoreDia, novoPaciente, 3);
+    InserirABB(arvoreIdade, novoPaciente, 4);
   }
   
   fclose(arquivo);

@@ -37,10 +37,10 @@ void CadastrarNovoPaciente(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *ar
   
   if (novoPaciente != NULL) {
     InserirLDE(lista, novoPaciente);
-    InserirABB_Idade(arvoreIdade, novoPaciente);
-    InserirABB_Ano(arvoreAno, novoPaciente);
-    InserirABB_Mes(arvoreMes, novoPaciente);
-    InserirABB_Dia(arvoreDia, novoPaciente);
+    InserirABB(arvoreAno, novoPaciente, 1);
+    InserirABB(arvoreMes, novoPaciente, 2);
+    InserirABB(arvoreDia, novoPaciente, 3);
+    InserirABB(arvoreIdade, novoPaciente, 4);
     
     printf("\nPaciente cadastrado com sucesso!\n\n");
     system("pause");
@@ -50,7 +50,7 @@ void CadastrarNovoPaciente(LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *ar
   }
 }
 
-void ConsultarPaciente(LDE *lista, Paciente *paciente) {
+void ConsultarPaciente(Paciente *paciente) {
   system("cls");
   
   MenuTituloIsolado("Consultar Paciente");
@@ -78,7 +78,7 @@ void ExibirListaCompleta(LDE *lista) {
   system("pause");
 }
 
-void AtualizarPaciente(LDE *lista, Paciente *paciente) {
+void AtualizarPaciente(LDE *lista, Paciente *paciente, ABB *arvoreIdade) {
   system("cls");
   
   MenuTituloIsolado("Atualizar Paciente");
@@ -97,14 +97,25 @@ void AtualizarPaciente(LDE *lista, Paciente *paciente) {
   
   printf("Idade: ");
   scanf("%d", &paciente->idade);
+  
+  LimparABB(arvoreIdade);
+  
+  Celula *temp = lista->primeiro;
+  
+  while (temp != NULL) {
+    InserirABB(arvoreIdade, temp->paciente, 4);
+    
+    temp = temp->prox;
+  }
+  
+  printf("\nPaciente atualizado com sucesso!\n\n");
+  system("pause");
 }
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia) {
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvoreIdade, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia) {
   system("cls");
-  IsMemoryAllocated(arvoreAno);
   
   MenuTituloIsolado("Remover Paciente");
-  RemoverABB(arvoreAno, paciente);
   
   if (paciente->idade == 0) {
     printf("Paciente nao encontrado.\n\n");
@@ -113,9 +124,23 @@ void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore, ABB *arvoreAno
   }
   
   RemoverLDE(lista, paciente);
-  RemoverABB(arvore, paciente);
-  RemoverABB(arvoreMes, paciente);
-  RemoverABB(arvoreDia, paciente);
+  
+  LimparABB(arvoreAno);
+  LimparABB(arvoreMes);
+  LimparABB(arvoreDia);
+  LimparABB(arvoreIdade);
+  
+  Celula *temp = lista->primeiro;
+
+  while (temp != NULL) {
+    InserirABB(arvoreAno, temp->paciente, 1);
+    InserirABB(arvoreMes, temp->paciente, 2);
+    InserirABB(arvoreDia, temp->paciente, 3);
+    InserirABB(arvoreIdade, temp->paciente, 4);
+    
+    temp = temp->prox;
+  }
+  
   
   printf("\nPaciente removido com sucesso!\n\n");
   system("pause");

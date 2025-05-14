@@ -13,14 +13,12 @@ void ExibirMenuCadastrar();
 
 void CadastrarNovoPaciente(LDE *lista, ABB *arvore, ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia);
 
-void ConsultarPaciente(LDE *lista, Paciente *paciente);
+void ConsultarPaciente(Paciente *paciente);
 
 void ExibirListaCompleta(LDE *lista);
 
-void AtualizarPaciente(LDE *lista, Paciente *paciente);
+void AtualizarPaciente(LDE *lista, Paciente *paciente, ABB *arvoreIdade);
 
-void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvore,  ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia);
-
-
+void RemoverPaciente(Paciente *paciente, LDE *lista, ABB *arvoreIdade,  ABB *arvoreAno, ABB *arvoreMes, ABB *arvoreDia);
 
 #endif /* MENUCADASTRAR_H */

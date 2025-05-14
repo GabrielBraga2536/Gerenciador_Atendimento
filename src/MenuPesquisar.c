@@ -20,6 +20,12 @@ void ExibirRegistrosAno(ABB *abb) {
   
   MenuTituloIsolado("Pesquisar por Ano");
   
+  if (abb->qtde == 0) {
+    printf("Nenhum registro encontrado.\n\n");
+    system("pause");
+    return;
+  }
+  
   emOrdem(abb->raiz);
   
   system("pause");
@@ -29,6 +35,12 @@ void ExibirRegistrosMes(ABB *abb) {
   system("cls");
   
   MenuTituloIsolado("Pesquisar por Mes");
+  
+  if (abb->qtde == 0) {
+    printf("Nenhum registro encontrado.\n\n");
+    system("pause");
+    return;
+  }
   
   emOrdem(abb->raiz);
   
@@ -40,6 +52,12 @@ void ExibirRegistrosDia(ABB *abb) {
   
   MenuTituloIsolado("Pesquisar por Dia");
   
+  if (abb->qtde == 0) {
+    printf("Nenhum registro encontrado.\n\n");
+    system("pause");
+    return;
+  }
+  
   emOrdem(abb->raiz);
   
   system("pause");
@@ -50,6 +68,12 @@ void ExibirRegistrosIdade(ABB *abb) {
   
   MenuTituloIsolado("Pesquisar por Idade");
   
+  if (abb->qtde == 0) {
+    printf("Nenhum registro encontrado.\n\n");
+    system("pause");
+    return;
+  }
+
   emOrdem(abb->raiz);
   
   system("pause");

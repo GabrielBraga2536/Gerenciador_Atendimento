@@ -54,14 +54,14 @@ int main() {
               break;
             case 2:
               Paciente *pacienteParaConsultar = BuscarPaciente(lista);
-              ConsultarPaciente(lista, pacienteParaConsultar);
+              ConsultarPaciente(pacienteParaConsultar);
               break;
             case 3:
               ExibirListaCompleta(lista);
               break;
             case 4:
               Paciente *pacienteParaAtualizar = BuscarPaciente(lista);
-              AtualizarPaciente(lista, pacienteParaAtualizar);
+              AtualizarPaciente(lista, pacienteParaAtualizar, arvoreIdade);
               break;
             case 5:
               Paciente *pacienteParaRemover = BuscarPaciente(lista);
