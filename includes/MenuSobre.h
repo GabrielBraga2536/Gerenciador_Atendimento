@@ -8,6 +8,12 @@
 #include "Fila.h"
 #include "Heap.h"
 
+//* Declaração das funções do menu sobre
+
+/**
+ * @brief Exibe o menu sobre no terminal.
+ * @return 
+ */
 void ExibirMenuSobre();
 
 #endif /* MENUSOBRE_H */

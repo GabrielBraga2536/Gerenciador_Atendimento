@@ -19,6 +19,11 @@
 #include "MenuCarregar.h"
 #include "MenuSobre.h"
 
+
+/**
+ * @brief Função principal do aplicativo.
+ * @return 0 se o aplicativo for encerrado com sucesso.
+ */
 int app();
 
 #endif /* APP_H */

@@ -1,5 +1,0 @@
-Nome: Gabriel
-Idade: 21
-RG: 123456789
-Entrada: 13/5/2025
-
